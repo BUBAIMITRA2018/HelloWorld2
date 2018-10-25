@@ -1,72 +1,72 @@
-import { GithubFollowersService } from './services/github-followers.service';
-import { AppErrorHandler } from './common/app-error-handler';
-import { PostService } from './services/post.service';
-import { HttpModule } from '@angular/http';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { SummaryPipe } from './summary.pipe';
-import { AuthorsService } from './authors.service';
-import { CoursesService } from './courses.service';
-import { CoursesComponent } from './courses.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { NgModule, ErrorHandler } from '@angular/core';
-
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule, AngularFireAuth} from '@angular/fire/auth';
 import { AppComponent } from './app.component';
-import { CourseComponent } from './course/course.component';
-import { AuthorsComponent } from './authors/authors.component';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { PanelComponent } from './panel/panel.component';
-import { InputFormatDirective } from './input-format.directive';
-import { TitleCasePipe } from './title-case.pipe';
-import { LikeComponent } from './like/like.component';
-import { ZippyComponent } from './zippy/zippy.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
-import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PostsComponent } from './posts/posts.component';
-import { GithubFollowersComponent } from './github-followers/github-followers.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import{RouterModule} from '@angular/router';
+import{NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { environment } from 'environments/environment';
+import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
+import { ProductsComponent } from './products/products.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { OrderSucessComponent } from './order-sucess/order-sucess.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { HomeComponent } from './home/home.component';
-import { GithubProfileComponent } from './github-profile/github-profile.component';
-import { NotFoundComponent } from './not-found/not-found.component'; 
+import { LogInComponent } from './log-in/log-in.component';
+import { Server } from 'selenium-webdriver/safari';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupFormComponent,
-    CourseComponent,
-    CoursesComponent,
-    AuthorsComponent,
-    SummaryPipe,
-    FavoriteComponent,
-    PanelComponent,
-    InputFormatDirective,
-    TitleCasePipe,
-    LikeComponent,
-    ZippyComponent,
-    ContactFormComponent,
-    NewCourseFormComponent,
-    ChangePasswordComponent,
-    PostsComponent,
-    GithubFollowersComponent,
-    NavbarComponent,
+    BsNavbarComponent,
+    ProductsComponent,
+    ShoppingCartComponent,
+    CheckOutComponent,
+    OrderSucessComponent,
+    MyOrdersComponent,
+    AdminProductsComponent,
     HomeComponent,
-    GithubProfileComponent,
-    NotFoundComponent,
+    AdminOrdersComponent,
+    LogInComponent,
+      
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    NgbModule.forRoot(),
+    AngularFireAuthModule,
+    RouterModule.forRoot([
+      {path:'',component:HomeComponent},
+      {path:'products',component:ProductsComponent},
+      {path:'shopping-cart',component:ShoppingCartComponent},
+      {path:'products',component:ProductsComponent},
+      {path:'my/orders',component:MyOrdersComponent},
+      {path:'check-out',component:CheckOutComponent},
+      {path:'order-success',component:OrderSucessComponent},
+      {path:'login',component:LogInComponent},
+      {path:'admin/products',component:AdminProductsComponent},
+      {path:'admin/orders',component:AdminOrdersComponent},
+
+      
+
+
+
+
+
+    ])
+ 
+    
   ],
   providers: [
-    PostService,
-    CoursesService,
-    AuthorsService,
-    GithubFollowersService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+  
   ],
   bootstrap: [AppComponent]
 })
