@@ -25,7 +25,22 @@ export class ProductFormComponent implements OnInit {
     return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
      });
 
+
+     const param_id = this.route.snapshot.paramMap.get('id');
+     if (param_id) {
+     this._product = this.productService.get(param_id);
+     this._product.snapshotChanges().map(changes => {
+           return changes.map(c => ({
+           key: c.payload.key, ...c.payload.val()}
+         ));
+       })
+       .subscribe(res => this.Product = res);
+      }
+
     }
+
+
+
 
   save(product) {
    this.productService.create(product);
@@ -33,21 +48,7 @@ export class ProductFormComponent implements OnInit {
    }
 
    ngOnInit() {
-    const param_id = this.route.snapshot.paramMap.get('id');
-    if (param_id) {
 
-      this._product.snapshotChanges .pipe(
-        map(changes => {
-          return changes.pipe(
-            map(c => ({
-              key: c.payload.key,
-              ...c.payload.val()
-            }))
-          );
-        })
-      )
-      .subscribe(res => this.Product = res);
-    }
   }
 
 }
