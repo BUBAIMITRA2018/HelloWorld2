@@ -10,7 +10,7 @@ export const environment = {
     authDomain: "helloworld-591c4.firebaseapp.com",
     databaseURL: "https://helloworld-591c4.firebaseio.com",
     projectId: "helloworld-591c4",
-    storageBucket: "",
+    storageBucket: "helloworld-591c4.appspot.com",
     messagingSenderId: "740672974795"
   }
 };
