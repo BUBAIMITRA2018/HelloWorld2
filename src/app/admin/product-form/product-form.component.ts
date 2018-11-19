@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'app/category.service';
 import { ProductService } from 'app/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-
+import {map, switchMap} from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -14,6 +14,8 @@ export class ProductFormComponent implements OnInit {
   categories$;
   categories;
   _product;
+  product$;
+
 
   Product;
 
@@ -26,16 +28,28 @@ export class ProductFormComponent implements OnInit {
      });
 
 
-     const param_id = this.route.snapshot.paramMap.get('id');
-     if (param_id) {
-     this._product = this.productService.get(param_id);
-     this._product.snapshotChanges().map(changes => {
-           return changes.map(c => ({
-           key: c.payload.key, ...c.payload.val()}
-         ));
-       })
-       .subscribe(res => this.Product = res);
-      }
+    //  const param_id = this.route.snapshot.paramMap.get('id');
+    //  if (param_id) {
+    //  this._product = this.productService.get(param_id).
+    //  this._product.snapshotChanges().map(changes => {
+    //        return changes.map(c => ({
+    //        key: c.payload.key, ...c.payload.val()}
+    //      ));
+    //    })
+    //    .subscribe(res => this.Product = res);
+    //   }
+
+    const param_id = this.route.snapshot.paramMap.get('id');
+    if (param_id) {
+       this.productService.get(param_id).snapshotChanges().pipe(map(item => {
+        return item.map(a => {
+          const data = a.payload.val();
+          const $key = a.payload.key;
+          const $ref = a.payload.ref;
+          return { $key, ...data, $ref };
+        });
+      })).subscribe(p => this.Product = p);
+     }
 
     }
 
