@@ -10,7 +10,8 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
 import { environment } from 'environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { FormsModule} from '@angular/forms'
+import { FormsModule} from '@angular/forms';
+import { DataTableModule } from 'angular5-data-table';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -49,6 +50,7 @@ import { CategoryService } from './category.service';
     AngularFireDatabaseModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule,
     NgbModule.forRoot(),
     AngularFireAuthModule,
     RouterModule.forRoot([
