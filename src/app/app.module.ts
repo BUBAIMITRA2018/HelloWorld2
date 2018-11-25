@@ -11,7 +11,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { environment } from 'environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { FormsModule} from '@angular/forms';
-import { DataTableModule } from 'angular5-data-table';
+import { DataTableModule } from 'angular-6-datatable';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -27,6 +27,7 @@ import { UserService } from './user.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CategoryService } from './category.service';
     AdminOrdersComponent,
     LogInComponent,
     ProductFormComponent,
+    ProductFilterComponent,
 
   ],
   imports: [
@@ -54,7 +56,7 @@ import { CategoryService } from './category.service';
     NgbModule.forRoot(),
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: '', component: ProductsComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'products', component: ProductsComponent},

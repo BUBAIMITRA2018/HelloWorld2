@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'app/product.service';
-import { AngularFireList } from '@angular/fire/database';
 import { Product } from 'app/models/product';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
