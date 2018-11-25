@@ -11,7 +11,7 @@ import { CategoryService } from 'app/category.service';
 
 
 export class ProductFilterComponent implements OnInit {
- 
+
 
   ngOnInit() {
   }
